@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="player_movement" load_steps=2 format=3 uid="uid://bgojwialjd5ev"]
+
+[ext_resource type="Script" path="res://Scripts/MovementResource.gd" id="1_tv7qt"]
+
+[resource]
+script = ExtResource("1_tv7qt")
+MAX_SPEED = 60.0
+ACCELERATION = 200
+FRICTION = 250
