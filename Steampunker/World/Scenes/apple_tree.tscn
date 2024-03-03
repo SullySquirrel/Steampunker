@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cop4i4iob3c6m"]
+
+[ext_resource type="Script" path="res://World/Scripts/AppleTree.gd" id="1_vk7r7"]
+[ext_resource type="Texture2D" uid="uid://cversf7h2r5i1" path="res://Assets/World/Tree.png" id="2_4pifq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2g0g"]
+atlas = ExtResource("2_4pifq")
+region = Rect2(48, 0, 48, 80)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0nlqq"]
+load_path = "res://.godot/imported/Tree.png-a5a8417259442f99ce0501cb091b7eff.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1uvv"]
+atlas = SubResource("CompressedTexture2D_0nlqq")
+region = Rect2(0, 0, 48, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kapld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2g0g")
+}],
+"loop": true,
+"name": &"apples",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1uvv")
+}],
+"loop": true,
+"name": &"noApples",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36g4n"]
+radius = 21.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lg0gd"]
+radius = 8.0
+
+[node name="AppleTree" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_vk7r7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kapld")
+animation = &"noApples"
+offset = Vector2(0, -29)
+
+[node name="pickableArea" type="Area2D" parent="."]
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickableArea"]
+shape = SubResource("CircleShape2D_36g4n")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CircleShape2D_lg0gd")
+
+[node name="growthTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="pickableArea" to="." method="_on_pickable_area_body_entered"]
+[connection signal="body_exited" from="pickableArea" to="." method="_on_pickable_area_body_exited"]
+[connection signal="timeout" from="growthTimer" to="." method="_on_growth_timer_timeout"]

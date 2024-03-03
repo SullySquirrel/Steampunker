@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq0bygaq3o016"]
+
+[ext_resource type="Script" path="res://InventoryAndItems/Scripts/inventory_ui.gd" id="1_ri3q5"]
+[ext_resource type="Texture2D" uid="uid://b1dbrekgviyr1" path="res://Assets/inventory_slot.png" id="2_wtqjq"]
+
+[node name="PlayerInventoryUI" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ri3q5")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -75.0
+offset_right = 125.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wtqjq")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -123.0
+offset_top = -80.0
+offset_right = 123.0
+offset_bottom = -25.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Inventory"
+horizontal_alignment = 1

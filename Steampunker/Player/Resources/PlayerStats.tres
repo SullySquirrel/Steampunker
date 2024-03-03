@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="player_stats" load_steps=2 format=3 uid="uid://dbstipvjrhur4"]
+
+[ext_resource type="Script" path="res://Player/Scripts/PlayerStats.gd" id="1_xrott"]
+
+[resource]
+script = ExtResource("1_xrott")
+MAX_HELATH = 10
